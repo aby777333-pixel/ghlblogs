@@ -75,12 +75,17 @@ export default function NewReportPage() {
         body: JSON.stringify({ ...form, status }),
       });
 
+      if (res.status === 401) {
+        toast.error('Session expired. Redirecting to login...');
+        router.push('/admin/login');
+        return;
+      }
       if (!res.ok) throw new Error('Failed');
 
       toast.success(status === 'published' ? 'Published!' : 'Saved as draft');
       router.push('/admin/reports');
     } catch {
-      toast.error('Failed to save');
+      toast.error('Failed to save report');
     } finally {
       setLoading(false);
     }

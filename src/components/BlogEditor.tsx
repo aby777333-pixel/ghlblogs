@@ -95,6 +95,11 @@ export default function BlogEditor({ mode, postId }: BlogEditorProps) {
         body: JSON.stringify({ ...form, status, tags }),
       });
 
+      if (res.status === 401) {
+        toast.error('Session expired. Redirecting to login...');
+        router.push('/admin/login');
+        return;
+      }
       if (!res.ok) throw new Error('Failed to save');
 
       toast.success(status === 'published' ? 'Published!' : 'Saved as draft');
