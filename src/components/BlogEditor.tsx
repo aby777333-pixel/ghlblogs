@@ -70,13 +70,17 @@ export default function BlogEditor({ mode, postId }: BlogEditorProps) {
 
     try {
       const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Upload failed');
+      }
       const data = await res.json();
       if (data.url) {
         setForm({ ...form, cover_image: data.url });
         toast.success('Image uploaded');
       }
-    } catch {
-      toast.error('Upload failed');
+    } catch (err: any) {
+      toast.error(err.message || 'Upload failed. Please login again.');
     } finally {
       setCoverUploading(false);
     }

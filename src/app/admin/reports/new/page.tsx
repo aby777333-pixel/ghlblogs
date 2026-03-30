@@ -37,13 +37,17 @@ export default function NewReportPage() {
 
     try {
       const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Upload failed');
+      }
       const data = await res.json();
       if (data.url) {
         setForm({ ...form, pdf_url: data.url, pdf_filename: file.name });
         toast.success('PDF uploaded');
       }
-    } catch {
-      toast.error('Upload failed');
+    } catch (err: any) {
+      toast.error(err.message || 'Upload failed. Please login again.');
     } finally {
       setPdfUploading(false);
     }
@@ -60,6 +64,10 @@ export default function NewReportPage() {
 
     try {
       const res = await fetch('/api/upload', { method: 'POST', body: formData });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Upload failed');
+      }
       const data = await res.json();
       if (data.url) {
         setForm({ ...form, cover_image: data.url });
