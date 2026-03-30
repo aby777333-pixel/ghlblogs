@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { HiUpload } from 'react-icons/hi';
+import { uploadFile } from '@/lib/upload';
 import type { BlogCategory } from '@/lib/types';
 
 export default function NewReportPage() {
@@ -23,7 +24,9 @@ export default function NewReportPage() {
   });
 
   useEffect(() => {
-    fetch('/api/categories').then((res) => res.json()).then(setCategories);
+    fetch('/api/categories').then((res) => res.json()).then((data) => {
+      if (Array.isArray(data)) setCategories(data);
+    });
   }, []);
 
   const handlePdfUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,23 +34,12 @@ export default function NewReportPage() {
     if (!file) return;
 
     setPdfUploading(true);
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('bucket', 'pdf-reports');
-
     try {
-      const res = await fetch('/api/upload', { method: 'POST', body: formData });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Upload failed');
-      }
-      const data = await res.json();
-      if (data.url) {
-        setForm({ ...form, pdf_url: data.url, pdf_filename: file.name });
-        toast.success('PDF uploaded');
-      }
+      const result = await uploadFile(file, 'pdf-reports');
+      setForm({ ...form, pdf_url: result.url, pdf_filename: result.filename });
+      toast.success('PDF uploaded successfully!');
     } catch (err: any) {
-      toast.error(err.message || 'Upload failed. Please login again.');
+      toast.error(err.message || 'PDF upload failed');
     } finally {
       setPdfUploading(false);
     }
@@ -58,23 +50,12 @@ export default function NewReportPage() {
     if (!file) return;
 
     setCoverUploading(true);
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('bucket', 'blog-images');
-
     try {
-      const res = await fetch('/api/upload', { method: 'POST', body: formData });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Upload failed');
-      }
-      const data = await res.json();
-      if (data.url) {
-        setForm({ ...form, cover_image: data.url });
-        toast.success('Cover uploaded');
-      }
-    } catch {
-      toast.error('Upload failed');
+      const result = await uploadFile(file, 'blog-images');
+      setForm({ ...form, cover_image: result.url });
+      toast.success('Cover image uploaded!');
+    } catch (err: any) {
+      toast.error(err.message || 'Image upload failed');
     } finally {
       setCoverUploading(false);
     }
