@@ -27,14 +27,17 @@ export async function POST(request: NextRequest) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '');
 
-    const wordCount = (body.content || '').replace(/<[^>]*>/g, '').split(/\s+/).length;
+    // Clean non-breaking spaces from pasted content
+    const cleanContent = (body.content || '').replace(/&nbsp;/g, ' ');
+
+    const wordCount = cleanContent.replace(/<[^>]*>/g, '').split(/\s+/).length;
     const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
     const { data, error } = await supabaseAdmin.from('blog_posts').insert({
       title: body.title,
       slug,
       excerpt: body.excerpt,
-      content: body.content,
+      content: cleanContent,
       cover_image: body.cover_image,
       category_id: body.category_id || null,
       author_id: user.id,

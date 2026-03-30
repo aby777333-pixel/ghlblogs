@@ -27,14 +27,16 @@ export async function PUT(request: NextRequest, { params }: Props) {
   const { slug } = await params;
   const body = await request.json();
 
-  const wordCount = (body.content || '').replace(/<[^>]*>/g, '').split(/\s+/).length;
+  const cleanContent = (body.content || '').replace(/&nbsp;/g, ' ');
+
+  const wordCount = cleanContent.replace(/<[^>]*>/g, '').split(/\s+/).length;
   const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
   const updateData: Record<string, unknown> = {
     title: body.title,
     slug: body.slug,
     excerpt: body.excerpt,
-    content: body.content,
+    content: cleanContent,
     cover_image: body.cover_image,
     category_id: body.category_id || null,
     post_type: body.post_type || 'blog',
