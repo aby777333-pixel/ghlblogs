@@ -29,7 +29,7 @@ body {
 }
 
 /* Rich text content styles */
-.blog-content { word-break: normal; overflow-wrap: break-word; text-align: justify; }
+.blog-content { word-break: normal; overflow-wrap: normal; text-align: left; hyphens: none; -webkit-hyphens: none; }
 .blog-content h1 { font-size: 2rem; font-weight: 700; margin: 1.5rem 0 1rem; }
 .blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.25rem 0 0.75rem; }
 .blog-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; }

@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-brand-grey-200 overflow-hidden">
+      <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-brand-grey-200">
         <div className="mb-8">
           {post.blog_categories && (
             <span className="text-brand-red text-sm font-semibold uppercase tracking-wide">
