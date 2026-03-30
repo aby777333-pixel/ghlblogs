@@ -12,17 +12,24 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [isAuth, setIsAuth] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // Check auth by making a simple API call
-    fetch('/api/blogs', { credentials: 'include' })
+    if (pathname === '/admin/login') {
+      setIsAuth(true);
+      return;
+    }
+    fetch('/api/auth/verify')
       .then((res) => {
-        if (pathname === '/admin/login') {
-          setIsAuth(true); // Allow login page
+        if (res.ok) {
+          setIsAuth(true);
         } else {
-          setIsAuth(true); // We'll check via cookie on API calls
+          setIsAuth(false);
+          router.push('/admin/login');
         }
       })
-      .catch(() => setIsAuth(false));
-  }, [pathname]);
+      .catch(() => {
+        setIsAuth(false);
+        router.push('/admin/login');
+      });
+  }, [pathname, router]);
 
   const handleLogout = () => {
     document.cookie = 'admin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -32,6 +39,19 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (pathname === '/admin/login') {
     return <>{children}</>;
   }
+
+  if (isAuth === null) {
+    return (
+      <div className="min-h-screen bg-brand-black flex items-center justify-center">
+        <div className="text-white text-center">
+          <div className="w-12 h-12 bg-brand-red rounded-xl flex items-center justify-center font-bold text-white mx-auto mb-3 animate-pulse">GHL</div>
+          <p className="text-brand-grey-400 text-sm">Loading admin...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isAuth === false) return null;
 
   const navItems = [
     { href: '/admin', label: 'Dashboard', icon: HiHome },
