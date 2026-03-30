@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { HiPlus, HiPencil, HiTrash, HiDownload } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 import type { PdfReport } from '@/lib/types';
+import { apiUrl } from '@/lib/api';
 
 export default function AdminReportsPage() {
   const [reports, setReports] = useState<PdfReport[]>([]);
@@ -14,7 +15,7 @@ export default function AdminReportsPage() {
   useEffect(() => { fetchReports(); }, []);
 
   async function fetchReports() {
-    const res = await fetch('/api/reports');
+    const res = await fetch(apiUrl('/api/reports'));
     const data = await res.json();
     setReports(Array.isArray(data) ? data : []);
     setLoading(false);
@@ -22,7 +23,7 @@ export default function AdminReportsPage() {
 
   async function deleteReport(id: string) {
     if (!confirm('Delete this report?')) return;
-    const res = await fetch(`/api/reports/${id}`, { method: 'DELETE' });
+    const res = await fetch(apiUrl(`/api/reports/${id}`), { method: 'DELETE' });
     if (res.ok) { toast.success('Report deleted'); fetchReports(); }
     else toast.error('Failed to delete');
   }

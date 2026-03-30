@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { HiDownload, HiUsers } from 'react-icons/hi';
 import type { Lead } from '@/lib/types';
+import { apiUrl } from '@/lib/api';
 
 export default function AdminLeadsPage() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/api/leads')
+    fetch(apiUrl('/api/leads'))
       .then((res) => res.json())
       .then((data) => {
         setLeads(Array.isArray(data) ? data : []);

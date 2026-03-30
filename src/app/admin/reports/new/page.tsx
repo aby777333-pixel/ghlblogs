@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { HiUpload } from 'react-icons/hi';
 import { uploadFile } from '@/lib/upload';
 import type { BlogCategory } from '@/lib/types';
+import { apiUrl } from '@/lib/api';
 
 export default function NewReportPage() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function NewReportPage() {
   });
 
   useEffect(() => {
-    fetch('/api/categories').then((res) => res.json()).then((data) => {
+    fetch(apiUrl('/api/categories')).then((res) => res.json()).then((data) => {
       if (Array.isArray(data)) setCategories(data);
     });
   }, []);
@@ -69,7 +70,7 @@ export default function NewReportPage() {
 
     setLoading(true);
     try {
-      const res = await fetch('/api/reports', {
+      const res = await fetch(apiUrl('/api/reports'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, status }),

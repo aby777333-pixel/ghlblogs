@@ -7,6 +7,7 @@ import RichTextEditor from './RichTextEditor';
 import { HiUpload } from 'react-icons/hi';
 import { uploadFile } from '@/lib/upload';
 import type { BlogCategory } from '@/lib/types';
+import { apiUrl } from '@/lib/api';
 
 interface BlogEditorProps {
   mode: 'create' | 'edit';
@@ -34,12 +35,12 @@ export default function BlogEditor({ mode, postId }: BlogEditorProps) {
   });
 
   useEffect(() => {
-    fetch('/api/categories').then((res) => res.json()).then((data) => {
+    fetch(apiUrl('/api/categories')).then((res) => res.json()).then((data) => {
       if (Array.isArray(data)) setCategories(data);
     });
 
     if (mode === 'edit' && postId) {
-      fetch(`/api/blogs/${postId}`)
+      fetch(apiUrl(`/api/blogs/${postId}`))
         .then((res) => res.json())
         .then((data) => {
           setForm({
@@ -86,7 +87,7 @@ export default function BlogEditor({ mode, postId }: BlogEditorProps) {
     const tags = form.tags.split(',').map((t) => t.trim()).filter(Boolean);
 
     try {
-      const url = mode === 'edit' ? `/api/blogs/${postId}` : '/api/blogs';
+      const url = apiUrl(mode === 'edit' ? `/api/blogs/${postId}` : '/api/blogs');
       const method = mode === 'edit' ? 'PUT' : 'POST';
 
       const res = await fetch(url, {

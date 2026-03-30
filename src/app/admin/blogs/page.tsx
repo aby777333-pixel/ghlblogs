@@ -6,6 +6,7 @@ import { format } from 'date-fns';
 import { HiPlus, HiPencil, HiTrash, HiEye } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 import type { BlogPost } from '@/lib/types';
+import { apiUrl } from '@/lib/api';
 
 export default function AdminBlogsPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -16,7 +17,7 @@ export default function AdminBlogsPage() {
   }, []);
 
   async function fetchPosts() {
-    const res = await fetch('/api/blogs');
+    const res = await fetch(apiUrl('/api/blogs'));
     const data = await res.json();
     setPosts(Array.isArray(data) ? data : []);
     setLoading(false);
@@ -25,7 +26,7 @@ export default function AdminBlogsPage() {
   async function deletePost(id: string) {
     if (!confirm('Are you sure you want to delete this post?')) return;
 
-    const res = await fetch(`/api/blogs/${id}`, { method: 'DELETE' });
+    const res = await fetch(apiUrl(`/api/blogs/${id}`), { method: 'DELETE' });
     if (res.ok) {
       toast.success('Post deleted');
       fetchPosts();

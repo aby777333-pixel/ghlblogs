@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { HiDocumentText, HiDocumentReport, HiUsers, HiLogout, HiMenu, HiX, HiHome } from 'react-icons/hi';
+import { apiUrl } from '@/lib/api';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       setIsAuth(true);
       return;
     }
-    fetch('/api/auth/verify')
+    fetch(apiUrl('/api/auth/verify'))
       .then((res) => {
         if (res.ok) {
           setIsAuth(true);

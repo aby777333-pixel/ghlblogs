@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { HiCheckCircle } from 'react-icons/hi';
+import { apiUrl } from '@/lib/api';
 
 interface LeadFormProps {
   variant?: 'hero' | 'floating';
@@ -23,7 +24,7 @@ export default function LeadForm({ variant = 'hero', onSuccess }: LeadFormProps)
 
     setLoading(true);
     try {
-      const res = await fetch('/api/leads', {
+      const res = await fetch(apiUrl('/api/leads'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, source: variant === 'hero' ? 'hero_form' : 'floating_widget' }),

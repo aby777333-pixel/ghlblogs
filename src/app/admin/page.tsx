@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { HiDocumentText, HiDocumentReport, HiUsers, HiPlus } from 'react-icons/hi';
+import { apiUrl } from '@/lib/api';
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState({ posts: 0, reports: 0, leads: 0 });
@@ -10,9 +11,9 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchStats() {
       const [postsRes, reportsRes, leadsRes] = await Promise.all([
-        fetch('/api/blogs'),
-        fetch('/api/reports'),
-        fetch('/api/leads'),
+        fetch(apiUrl('/api/blogs')),
+        fetch(apiUrl('/api/reports')),
+        fetch(apiUrl('/api/leads')),
       ]);
       const [posts, reports, leads] = await Promise.all([
         postsRes.json(),

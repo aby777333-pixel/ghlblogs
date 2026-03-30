@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { HiX, HiDownload, HiEye } from 'react-icons/hi';
 import toast from 'react-hot-toast';
 import type { PdfReport } from '@/lib/types';
+import { apiUrl } from '@/lib/api';
 
 interface LeadCaptureModalProps {
   report: PdfReport;
@@ -20,7 +21,7 @@ export default function LeadCaptureModal({ report, onClose }: LeadCaptureModalPr
     setLoading(true);
 
     try {
-      const res = await fetch('/api/leads', {
+      const res = await fetch(apiUrl('/api/leads'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
