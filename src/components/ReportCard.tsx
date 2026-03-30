@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { HiDownload } from 'react-icons/hi';
 import type { PdfReport } from '@/lib/types';
 
@@ -13,12 +12,11 @@ export default function ReportCard({ report, onDownload }: ReportCardProps) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-brand-grey-200 hover:border-brand-red/20 group">
       <div className="relative h-48 bg-brand-grey-200 overflow-hidden">
-        {report.cover_image ? (
-          <Image
+        {report.cover_image && report.cover_image.length > 5 ? (
+          <img
             src={report.cover_image}
             alt={report.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-brand-red/20 to-brand-black/20 flex items-center justify-center">

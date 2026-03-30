@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import BlogCard from '@/components/BlogCard';
-import { HiArrowRight, HiTrendingUp, HiLightBulb, HiDocumentReport } from 'react-icons/hi';
+import { HiArrowRight, HiTrendingUp, HiDocumentReport } from 'react-icons/hi';
 import LeadForm from '@/components/LeadForm';
 
 export const revalidate = 60;
@@ -99,21 +99,13 @@ export default async function HomePage() {
       {/* Categories Section */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Link href="/blog" className="group p-6 rounded-2xl border-2 border-brand-grey-200 hover:border-brand-red/30 transition-all hover:shadow-lg">
               <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
                 <HiTrendingUp className="text-blue-600" size={24} />
               </div>
               <h3 className="font-bold text-lg text-brand-grey-900 mb-2">Investment Analysis</h3>
               <p className="text-brand-grey-500 text-sm">In-depth AIF performance analysis, real estate trends, and market commentary.</p>
-            </Link>
-
-            <Link href="/insights" className="group p-6 rounded-2xl border-2 border-brand-grey-200 hover:border-brand-red/30 transition-all hover:shadow-lg">
-              <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-amber-100 transition-colors">
-                <HiLightBulb className="text-amber-600" size={24} />
-              </div>
-              <h3 className="font-bold text-lg text-brand-grey-900 mb-2">Investment Insights</h3>
-              <p className="text-brand-grey-500 text-sm">Expert perspectives on AIF, real estate opportunities, and wealth-building strategies.</p>
             </Link>
 
             <Link href="/reports" className="group p-6 rounded-2xl border-2 border-brand-grey-200 hover:border-brand-red/30 transition-all hover:shadow-lg">

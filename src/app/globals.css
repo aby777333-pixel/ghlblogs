@@ -46,7 +46,27 @@ body {
   font-style: italic;
 }
 .blog-content a { color: var(--color-brand-red); text-decoration: underline; }
-.blog-content img { max-width: 100%; border-radius: 8px; margin: 1rem 0; }
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.blog-content p img {
+  margin: 1.5rem auto;
+}
+.blog-content figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+.blog-content figcaption {
+  font-size: 0.875rem;
+  color: var(--color-brand-grey-500);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
 .blog-content strong { font-weight: 700; }
 .blog-content em { font-style: italic; }
 .blog-content pre {
@@ -70,6 +90,7 @@ body {
 
 /* Quill editor overrides */
 .ql-editor { min-height: 300px; font-size: 1rem; line-height: 1.7; }
+.ql-editor img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; display: block; cursor: pointer; }
 .ql-toolbar { border-radius: 8px 8px 0 0 !important; }
 .ql-container { border-radius: 0 0 8px 8px !important; }
 
