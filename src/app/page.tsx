@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import BlogCard from '@/components/BlogCard';
 import { HiArrowRight, HiTrendingUp, HiLightBulb, HiDocumentReport } from 'react-icons/hi';
+import LeadForm from '@/components/LeadForm';
 
 export const revalidate = 60;
 
@@ -35,53 +36,61 @@ export default async function HomePage() {
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-brand-red rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/20 text-brand-red px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
-              Investment Insights Updated Daily
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 items-center">
+            {/* Left: Hero Content */}
+            <div className="lg:col-span-3">
+              <div className="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/20 text-brand-red px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+                <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
+                Investment Insights Updated Daily
+              </div>
+
+              <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+                Expert AIF &{' '}
+                <span className="text-brand-red">Real Estate</span>{' '}
+                Investment Insights
+              </h1>
+
+              <p className="text-brand-grey-400 text-lg leading-relaxed mb-8 max-w-xl">
+                Stay informed with in-depth analysis, investment strategies,
+                and expert research reports on AIF and real estate from GHL India Ventures.
+              </p>
+
+              <div className="flex flex-wrap gap-4 mb-10">
+                <Link
+                  href="/blog"
+                  className="bg-brand-red hover:bg-brand-red-dark text-white px-8 py-3 rounded-xl font-semibold transition-colors flex items-center gap-2"
+                >
+                  Read Latest Posts <HiArrowRight />
+                </Link>
+                <Link
+                  href="/reports"
+                  className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-xl font-semibold transition-colors border border-white/10"
+                >
+                  Free Reports ({reportCount})
+                </Link>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6 max-w-sm">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">{posts.length}+</div>
+                  <div className="text-brand-grey-400 text-xs mt-1">Articles</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">{reportCount}</div>
+                  <div className="text-brand-grey-400 text-xs mt-1">Free Reports</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">Daily</div>
+                  <div className="text-brand-grey-400 text-xs mt-1">Updates</div>
+                </div>
+              </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Expert AIF &{' '}
-              <span className="text-brand-red">Real Estate</span>{' '}
-              Investment Insights
-            </h1>
-
-            <p className="text-brand-grey-400 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
-              Stay informed with in-depth analysis, investment strategies,
-              and expert research reports on AIF and real estate from GHL India Ventures.
-            </p>
-
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/blog"
-                className="bg-brand-red hover:bg-brand-red-dark text-white px-8 py-3 rounded-xl font-semibold transition-colors flex items-center gap-2"
-              >
-                Read Latest Posts <HiArrowRight />
-              </Link>
-              <Link
-                href="/reports"
-                className="bg-white/10 hover:bg-white/20 text-white px-8 py-3 rounded-xl font-semibold transition-colors border border-white/10"
-              >
-                Free Reports ({reportCount})
-              </Link>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-6 mt-16 max-w-2xl">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">{posts.length}+</div>
-              <div className="text-brand-grey-400 text-sm mt-1">Articles</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">{reportCount}</div>
-              <div className="text-brand-grey-400 text-sm mt-1">Free Reports</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">Daily</div>
-              <div className="text-brand-grey-400 text-sm mt-1">Updates</div>
+            {/* Right: Lead Capture Form */}
+            <div className="lg:col-span-2">
+              <LeadForm variant="hero" />
             </div>
           </div>
         </div>
