@@ -89,7 +89,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-brand-grey-200">
+      <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-brand-grey-200 overflow-hidden">
         <div className="mb-8">
           {post.blog_categories && (
             <span className="text-brand-red text-sm font-semibold uppercase tracking-wide">
@@ -132,7 +132,8 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         <div
-          className="blog-content text-brand-grey-800 leading-relaxed prose prose-lg max-w-none"
+          className="blog-content text-brand-grey-800 leading-relaxed max-w-none break-words overflow-wrap-anywhere"
+          style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>

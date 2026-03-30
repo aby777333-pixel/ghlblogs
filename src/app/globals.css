@@ -29,10 +29,11 @@ body {
 }
 
 /* Rich text content styles */
+.blog-content { overflow-wrap: anywhere; word-break: break-word; }
 .blog-content h1 { font-size: 2rem; font-weight: 700; margin: 1.5rem 0 1rem; }
 .blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.25rem 0 0.75rem; }
 .blog-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; }
-.blog-content p { margin: 0.75rem 0; line-height: 1.8; }
+.blog-content p { margin: 0.75rem 0; line-height: 1.8; overflow-wrap: anywhere; }
 .blog-content ul, .blog-content ol { margin: 0.75rem 0; padding-left: 1.5rem; }
 .blog-content li { margin: 0.25rem 0; line-height: 1.7; }
 .blog-content ul { list-style-type: disc; }
