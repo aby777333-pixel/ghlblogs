@@ -6,7 +6,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Blog | GHL India Ventures',
-  description: 'Read the latest forex market analysis, trading strategies, and financial insights from GHL India Ventures experts.',
+  description: 'Read the latest AIF analysis, real estate investment insights, and expert research from GHL India Ventures.',
 };
 
 async function getPosts() {
@@ -31,7 +31,7 @@ export default async function BlogPage() {
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-brand-grey-900">Blog & Analysis</h1>
         <p className="text-brand-grey-500 mt-2 text-lg">
-          Expert insights on forex markets, trading strategies, and economic trends
+          Expert insights on AIF, real estate investments, and wealth-building strategies
         </p>
       </div>
 

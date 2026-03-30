@@ -39,18 +39,18 @@ export default async function HomePage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/20 text-brand-red px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
-              Market Insights Updated Daily
+              Investment Insights Updated Daily
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Expert Forex{' '}
-              <span className="text-brand-red">Analysis</span>{' '}
-              & Market Insights
+              Expert AIF &{' '}
+              <span className="text-brand-red">Real Estate</span>{' '}
+              Investment Insights
             </h1>
 
             <p className="text-brand-grey-400 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
-              Stay ahead of the markets with in-depth analysis, trading strategies,
-              and expert research reports from GHL India Ventures.
+              Stay informed with in-depth analysis, investment strategies,
+              and expert research reports on AIF and real estate from GHL India Ventures.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -95,16 +95,16 @@ export default async function HomePage() {
               <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-100 transition-colors">
                 <HiTrendingUp className="text-blue-600" size={24} />
               </div>
-              <h3 className="font-bold text-lg text-brand-grey-900 mb-2">Market Analysis</h3>
-              <p className="text-brand-grey-500 text-sm">Daily forex analysis, technical charts, and market commentary.</p>
+              <h3 className="font-bold text-lg text-brand-grey-900 mb-2">Investment Analysis</h3>
+              <p className="text-brand-grey-500 text-sm">In-depth AIF performance analysis, real estate trends, and market commentary.</p>
             </Link>
 
             <Link href="/insights" className="group p-6 rounded-2xl border-2 border-brand-grey-200 hover:border-brand-red/30 transition-all hover:shadow-lg">
               <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-amber-100 transition-colors">
                 <HiLightBulb className="text-amber-600" size={24} />
               </div>
-              <h3 className="font-bold text-lg text-brand-grey-900 mb-2">Trading Insights</h3>
-              <p className="text-brand-grey-500 text-sm">Expert perspectives, strategies, and educational content.</p>
+              <h3 className="font-bold text-lg text-brand-grey-900 mb-2">Investment Insights</h3>
+              <p className="text-brand-grey-500 text-sm">Expert perspectives on AIF, real estate opportunities, and wealth-building strategies.</p>
             </Link>
 
             <Link href="/reports" className="group p-6 rounded-2xl border-2 border-brand-grey-200 hover:border-brand-red/30 transition-all hover:shadow-lg">
@@ -147,7 +147,7 @@ export default async function HomePage() {
               </div>
               <h3 className="text-xl font-bold text-brand-grey-900 mb-2">Content Coming Soon</h3>
               <p className="text-brand-grey-500 max-w-md mx-auto">
-                We&apos;re preparing insightful content for you. Stay tuned for market analysis, trading strategies, and more.
+                We&apos;re preparing insightful content for you. Stay tuned for AIF analysis, real estate insights, and more.
               </p>
             </div>
           )}
@@ -167,10 +167,10 @@ export default async function HomePage() {
       <section className="py-16 bg-brand-black">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Level Up Your Trading?
+            Ready to Grow Your Wealth?
           </h2>
           <p className="text-brand-grey-400 text-lg mb-8 max-w-2xl mx-auto">
-            Join thousands of traders who rely on GHL India Ventures for market insights and analysis.
+            Join smart investors who rely on GHL India Ventures for AIF and real estate investment insights.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link

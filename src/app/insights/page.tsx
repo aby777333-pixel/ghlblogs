@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Market Insights | GHL India Ventures',
-  description: 'Expert trading insights, market perspectives, and economic analysis from GHL India Ventures.',
+  title: 'Investment Insights | GHL India Ventures',
+  description: 'Expert AIF and real estate investment insights, market perspectives, and analysis from GHL India Ventures.',
 };
 
 async function getInsights() {
@@ -25,9 +25,9 @@ export default async function InsightsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-10">
-        <h1 className="text-4xl font-bold text-brand-grey-900">Market Insights</h1>
+        <h1 className="text-4xl font-bold text-brand-grey-900">Investment Insights</h1>
         <p className="text-brand-grey-500 mt-2 text-lg">
-          Expert perspectives and analysis on market movements and trading opportunities
+          Expert perspectives on AIF performance, real estate opportunities, and investment strategies
         </p>
       </div>
 
@@ -40,7 +40,7 @@ export default async function InsightsPage() {
       ) : (
         <div className="text-center py-20 bg-white rounded-2xl border border-brand-grey-200">
           <h3 className="text-xl font-bold text-brand-grey-900 mb-2">No Insights Yet</h3>
-          <p className="text-brand-grey-500">Expert insights coming soon. Stay tuned!</p>
+          <p className="text-brand-grey-500">Expert investment insights coming soon. Stay tuned!</p>
         </div>
       )}
     </div>

@@ -59,8 +59,26 @@ export default async function BlogPostPage({ params }: Props) {
   // Increment views
   await supabase.from('blog_posts').update({ views: (post.views || 0) + 1 }).eq('id', post.id);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt || post.meta_description || '',
+    image: post.cover_image || undefined,
+    datePublished: post.published_at,
+    dateModified: post.updated_at,
+    author: { '@type': 'Organization', name: 'GHL India Ventures' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'GHL India Ventures',
+      url: 'https://ghlindiaventures.com',
+    },
+  };
+
   return (
-    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <Link href="/blog" className="inline-flex items-center gap-1 text-brand-red hover:text-brand-red-dark text-sm font-medium mb-8">
         <HiArrowLeft /> Back to Blog
       </Link>
@@ -138,5 +156,6 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       )}
     </article>
+    </>
   );
 }

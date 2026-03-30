@@ -33,7 +33,9 @@ export default function BlogEditor({ mode, postId }: BlogEditorProps) {
   });
 
   useEffect(() => {
-    fetch('/api/categories').then((res) => res.json()).then(setCategories);
+    fetch('/api/categories').then((res) => res.json()).then((data) => {
+      if (Array.isArray(data)) setCategories(data);
+    });
 
     if (mode === 'edit' && postId) {
       fetch(`/api/blogs/${postId}`)

@@ -14,8 +14,8 @@ export default function Footer() {
               <span className="text-white font-bold text-lg">GHL India Ventures</span>
             </div>
             <p className="text-sm leading-relaxed max-w-md">
-              Your trusted source for forex market analysis, trading insights, and expert research.
-              Stay ahead of the markets with our daily updates and comprehensive reports.
+              Your trusted source for AIF analysis, real estate investment insights, and expert research.
+              Make informed investment decisions with our daily updates and comprehensive reports.
             </p>
           </div>
 

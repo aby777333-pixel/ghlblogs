@@ -5,12 +5,12 @@ import Footer from '@/components/Footer';
 import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
-  title: 'GHL India Ventures Blog | Market Insights & Analysis',
-  description: 'Stay informed with the latest forex market analysis, trading insights, and expert research reports from GHL India Ventures.',
-  keywords: 'forex, trading, market analysis, GHL India, financial insights, investment research',
+  title: 'GHL India Ventures Blog | AIF & Real Estate Investment Insights',
+  description: 'Stay informed with expert AIF analysis, real estate investment insights, and research reports from GHL India Ventures.',
+  keywords: 'AIF, alternative investment fund, real estate investing, GHL India, investment insights, wealth management',
   openGraph: {
     title: 'GHL India Ventures Blog',
-    description: 'Expert forex market analysis and trading insights',
+    description: 'Expert AIF & real estate investment insights and analysis',
     siteName: 'GHL India Ventures Blog',
     type: 'website',
   },
