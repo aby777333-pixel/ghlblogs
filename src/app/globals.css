@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-red: #D0021B;
+  --color-brand-red-dark: #A50116;
+  --color-brand-red-light: #FF1A35;
+  --color-brand-black: #0A0A0A;
+  --color-brand-darkgrey: #1A1A1A;
+  --color-brand-offwhite: #F8F7F5;
+  --color-brand-grey-100: #F3F4F6;
+  --color-brand-grey-200: #E5E7EB;
+  --color-brand-grey-300: #D1D5DB;
+  --color-brand-grey-400: #9CA3AF;
+  --color-brand-grey-500: #6B7280;
+  --color-brand-grey-700: #374151;
+  --color-brand-grey-800: #1F2937;
+  --color-brand-grey-900: #111827;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-brand-grey-900);
+  background: var(--color-brand-offwhite);
+}
+
+/* Rich text content styles */
+.blog-content h1 { font-size: 2rem; font-weight: 700; margin: 1.5rem 0 1rem; }
+.blog-content h2 { font-size: 1.5rem; font-weight: 700; margin: 1.25rem 0 0.75rem; }
+.blog-content h3 { font-size: 1.25rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+.blog-content p { margin: 0.75rem 0; line-height: 1.8; }
+.blog-content ul, .blog-content ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+.blog-content li { margin: 0.25rem 0; line-height: 1.7; }
+.blog-content ul { list-style-type: disc; }
+.blog-content ol { list-style-type: decimal; }
+.blog-content blockquote {
+  border-left: 4px solid var(--color-brand-red);
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  background: var(--color-brand-grey-100);
+  font-style: italic;
+}
+.blog-content a { color: var(--color-brand-red); text-decoration: underline; }
+.blog-content img { max-width: 100%; border-radius: 8px; margin: 1rem 0; }
+.blog-content strong { font-weight: 700; }
+.blog-content em { font-style: italic; }
+.blog-content pre {
+  background: var(--color-brand-grey-900);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+.blog-content code {
+  background: var(--color-brand-grey-200);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.blog-content pre code {
+  background: transparent;
+  padding: 0;
+}
+
+/* Quill editor overrides */
+.ql-editor { min-height: 300px; font-size: 1rem; line-height: 1.7; }
+.ql-toolbar { border-radius: 8px 8px 0 0 !important; }
+.ql-container { border-radius: 0 0 8px 8px !important; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
