@@ -78,66 +78,68 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <Link href="/blog" className="inline-flex items-center gap-1 text-brand-red hover:text-brand-red-dark text-sm font-medium mb-8">
         <HiArrowLeft /> Back to Blog
       </Link>
 
       {post.cover_image && (
-        <div className="relative h-64 md:h-96 rounded-2xl overflow-hidden mb-8">
+        <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8">
           <Image src={post.cover_image} alt={post.title} fill className="object-cover" />
         </div>
       )}
 
-      <div className="mb-8">
-        {post.blog_categories && (
-          <span className="text-brand-red text-sm font-semibold uppercase tracking-wide">
-            {post.blog_categories.name}
-          </span>
-        )}
-        <h1 className="text-3xl md:text-4xl font-bold text-brand-grey-900 mt-2 mb-4">
-          {post.title}
-        </h1>
+      <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-brand-grey-200">
+        <div className="mb-8">
+          {post.blog_categories && (
+            <span className="text-brand-red text-sm font-semibold uppercase tracking-wide">
+              {post.blog_categories.name}
+            </span>
+          )}
+          <h1 className="text-3xl md:text-4xl font-bold text-brand-grey-900 mt-2 mb-4 leading-tight">
+            {post.title}
+          </h1>
 
-        <div className="flex flex-wrap items-center gap-4 text-sm text-brand-grey-500">
-          {post.admin_users && <span>By {post.admin_users.name}</span>}
-          {post.published_at && (
+          <div className="flex flex-wrap items-center gap-4 text-sm text-brand-grey-500 border-b border-brand-grey-200 pb-4">
+            {post.admin_users && <span>By {post.admin_users.name}</span>}
+            {post.published_at && (
+              <span className="flex items-center gap-1">
+                <HiClock size={14} />
+                {format(new Date(post.published_at), 'MMMM d, yyyy')}
+              </span>
+            )}
+            {post.reading_time && (
+              <span className="flex items-center gap-1">
+                <HiClock size={14} />
+                {post.reading_time} min read
+              </span>
+            )}
             <span className="flex items-center gap-1">
-              <HiClock size={14} />
-              {format(new Date(post.published_at), 'MMMM d, yyyy')}
+              <HiEye size={14} />
+              {post.views} views
             </span>
+          </div>
+
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-4">
+              {post.tags.map((tag: string) => (
+                <span key={tag} className="inline-flex items-center gap-1 bg-brand-grey-100 text-brand-grey-700 px-3 py-1 rounded-full text-xs">
+                  <HiTag size={12} /> {tag}
+                </span>
+              ))}
+            </div>
           )}
-          {post.reading_time && (
-            <span className="flex items-center gap-1">
-              <HiClock size={14} />
-              {post.reading_time} min read
-            </span>
-          )}
-          <span className="flex items-center gap-1">
-            <HiEye size={14} />
-            {post.views} views
-          </span>
         </div>
 
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-4">
-            {post.tags.map((tag: string) => (
-              <span key={tag} className="inline-flex items-center gap-1 bg-brand-grey-100 text-brand-grey-700 px-3 py-1 rounded-full text-xs">
-                <HiTag size={12} /> {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <div
+          className="blog-content text-brand-grey-800 leading-relaxed prose prose-lg max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </div>
-
-      <div
-        className="blog-content text-brand-grey-800 leading-relaxed"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <div className="mt-16 pt-8 border-t border-brand-grey-200">
+        <div className="mt-12 pt-8">
           <h3 className="text-2xl font-bold text-brand-grey-900 mb-6">Related Articles</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {relatedPosts.map((p) => (

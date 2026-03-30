@@ -17,14 +17,13 @@ export async function POST(request: NextRequest) {
     if (!file) return NextResponse.json({ error: 'No file provided' }, { status: 400 });
 
     const timestamp = Date.now();
-    const ext = file.name.split('.').pop();
     const filename = `${timestamp}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
 
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const arrayBuffer = await file.arrayBuffer();
 
     const { data, error } = await supabaseAdmin.storage
       .from(bucket)
-      .upload(filename, buffer, {
+      .upload(filename, arrayBuffer, {
         contentType: file.type,
         upsert: false,
       });
@@ -34,7 +33,7 @@ export async function POST(request: NextRequest) {
     const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/${bucket}/${data.path}`;
 
     return NextResponse.json({ url, path: data.path, filename: file.name });
-  } catch {
-    return NextResponse.json({ error: 'Upload failed' }, { status: 500 });
+  } catch (err: any) {
+    return NextResponse.json({ error: err?.message || 'Upload failed' }, { status: 500 });
   }
 }
