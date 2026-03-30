@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <Link href="/blog" className="inline-flex items-center gap-1 text-brand-red hover:text-brand-red-dark text-sm font-medium mb-8">
         <HiArrowLeft /> Back to Blog
       </Link>
@@ -132,8 +132,7 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
 
         <div
-          className="blog-content text-brand-grey-800 leading-relaxed max-w-none break-words overflow-wrap-anywhere"
-          style={{ overflowWrap: 'anywhere', wordBreak: 'break-word' }}
+          className="blog-content text-brand-grey-800 leading-relaxed max-w-none"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
