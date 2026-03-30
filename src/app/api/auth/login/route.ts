@@ -16,12 +16,13 @@ export async function POST(request: Request) {
     }
 
     const response = NextResponse.json({ user: result.user });
+    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/';
     response.cookies.set('admin_token', result.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 60 * 60 * 24, // 24 hours
-      path: '/',
+      path: basePath,
     });
 
     return response;
