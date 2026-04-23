@@ -31,7 +31,20 @@ export default async function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative bg-brand-black overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+        {/* Animated background (CodePen DMRPox by GabbeV) */}
+        <iframe
+          src="https://codepen.io/GabbeV/embed/DMRPox?default-tab=result&theme-id=dark&editable=false"
+          title="Hero animated background"
+          loading="eager"
+          aria-hidden="true"
+          tabIndex={-1}
+          className="absolute inset-0 w-full h-full border-0 pointer-events-none select-none"
+          style={{ opacity: 0.55 }}
+          sandbox="allow-scripts allow-same-origin"
+        />
+        {/* Darkening overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-black/60 via-brand-black/40 to-brand-black/80 pointer-events-none" />
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-red rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-brand-red rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
         </div>

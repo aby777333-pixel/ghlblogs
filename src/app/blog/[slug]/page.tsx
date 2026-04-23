@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { HiArrowLeft, HiClock, HiEye, HiTag } from 'react-icons/hi';
+import LeadForm from '@/components/LeadForm';
 
 export const revalidate = 60;
 
@@ -136,6 +137,28 @@ export default async function BlogPostPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
+
+      {/* Contact / lead capture under every post */}
+      <section className="mt-12 rounded-2xl bg-brand-black p-6 md:p-10">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+          <div className="lg:col-span-3">
+            <div className="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/20 text-brand-red px-4 py-1.5 rounded-full text-sm font-medium mb-5">
+              <span className="w-2 h-2 bg-brand-red rounded-full animate-pulse" />
+              Talk to our investment team
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white leading-tight mb-3">
+              Want to discuss this opportunity?
+            </h2>
+            <p className="text-brand-grey-400 text-base leading-relaxed max-w-xl">
+              Share your details and our AIF &amp; real-estate specialists will reach out
+              with a free, no-obligation consultation tailored to the topic you just read.
+            </p>
+          </div>
+          <div className="lg:col-span-2">
+            <LeadForm variant="hero" />
+          </div>
+        </div>
+      </section>
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
