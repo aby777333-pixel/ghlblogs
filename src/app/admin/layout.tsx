@@ -33,8 +33,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   }, [pathname, router]);
 
   const handleLogout = () => {
-    const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '/';
-    document.cookie = `admin_token=; path=${basePath}; expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+    document.cookie = 'admin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     router.push('/admin/login');
   };
 
